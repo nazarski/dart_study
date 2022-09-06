@@ -33,8 +33,8 @@ class Fifth extends Forth {
 // Добавьте конструктор Person(fullName, age).
 // Создайте два объект этого класса. Объект инициализируется конструктором Person(fullName, age).
 class Person {
-  final String fullName;
-  final int age;
+  String fullName;
+  int age;
   move() {
     print('When $fullName was $age, he moved to Volkinschmitzelburg');
   }
@@ -44,9 +44,7 @@ class Person {
   }
   Person(this.fullName, this.age);
   @override
-  String toString() {
-    return '$fullName $age';
-  }
+  String toString() => '$fullName $age';
 }
 
 // 3. Реализуйте класс Student (Студент), который будет наследоваться от класса Person.
@@ -60,17 +58,13 @@ class Person {
 // год поступления
 // текущий курс
 class Student extends Person{
-  final int yearOfAdmission;
-  currentCourse(){
-    return DateTime.now().year - yearOfAdmission;
-  }
+  int yearOfAdmission;
+  int get currentCourse => DateTime.now().year - yearOfAdmission;
   Student(super.fullName, super.age, this.yearOfAdmission);
 
 @override
-  String toString() {
-    return '${super.toString()} y.o applied in $yearOfAdmission, studies on the'
-        ' ${currentCourse()}th course';
-  }
+  String toString() => '${super.toString()} y.o applied in $yearOfAdmission,'
+    ' studies on the ${currentCourse}th course';
 }
 
 void main() {
@@ -78,9 +72,6 @@ void main() {
   final rapoo = Person('Rapoo', 31);
   // mark.move();
   // mark.talk();
-  final student = Student('Valencia Incognita', 19, 2018);
-print(student);
-
-
+print(Student('Valencia Incognita', 19, 2018));
 
 }
