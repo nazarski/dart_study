@@ -2,29 +2,52 @@
 // 1. Создайте цепочку реальных объектов наследования, длиною 5 объектов.
 // У каждого объекта должны быть поля и каждый child должен добавлять новые поля.
 
-class First {
-  final song = 'Tantsiuye zi smertiu';
+class Grandpa {
+  String eyes;
+
+  Grandpa(this.eyes);
 }
 
-class Second extends First {
-  final singer = 'Lilu45';
+class Dad extends Grandpa {
+  String hair;
+
+  Dad(
+    String eyes,
+    this.hair,
+  ) : super(eyes);
 }
 
-class Third extends Second {
-  final album = 'Viyna';
+class Me extends Dad {
+  String nose;
+
+  Me(
+    String eyes,
+    String hair,
+    this.nose,
+  ) : super(eyes, hair);
 }
 
-class Forth extends Third {
-  final dateOfRelease = '06.08.2022';
+class Child extends Me {
+  String footSize;
+
+  Child(
+    String eyes,
+    String hair,
+    String nose,
+    this.footSize,
+  ) : super(eyes, hair, nose);
 }
 
-class Fifth extends Forth {
-  final youtubeUrl = 'https://www.youtube.com/watch?v=ok71pl0rdvQ';
+class GrandSon extends Child {
+  String mole;
 
-  @override
-  String toString() {
-    return '$song $singer $album $dateOfRelease $youtubeUrl';
-  }
+  GrandSon(
+    String eyes,
+    String hair,
+    String nose,
+    String footSize,
+    this.mole,
+  ) : super(eyes, hair, nose, footSize);
 }
 
 // 2. Создать класс Person, который содержит:
@@ -35,14 +58,18 @@ class Fifth extends Forth {
 class Person {
   String fullName;
   int age;
-  move() {
+
+  void move() {
     print('When $fullName was $age, he moved to Volkinschmitzelburg');
   }
-  talk() {
+
+  void talk() {
     print('It took a while for $fullName to start speaking German, when he '
         'turned ${age + 2}, he was fluent in it');
   }
+
   Person(this.fullName, this.age);
+
   @override
   String toString() => '$fullName $age';
 }
@@ -57,21 +84,29 @@ class Person {
 // имя и фамилию студента - используя родительскую реализацию toString
 // год поступления
 // текущий курс
-class Student extends Person{
-  int yearOfAdmission;
-  int get currentCourse => DateTime.now().year - yearOfAdmission;
-  Student(super.fullName, super.age, this.yearOfAdmission);
+class Student extends Person {
+  DateTime yearOfAdmission;
 
-@override
-  String toString() => '${super.toString()} y.o applied in $yearOfAdmission,'
-    ' studies on the ${currentCourse}th course';
+  Student(String fullNAme, int age, this.yearOfAdmission):super(fullNAme, age);
+  int get currentCourse => DateTime.now().year - yearOfAdmission.year;
+
+  @override
+  String toString() => '${super.toString()} y.o applied in ${yearOfAdmission
+      .year},'
+      ' studies on the ${currentCourse}th course';
 }
 
 void main() {
   final mark = Person('Mark', 27);
-  final rapoo = Person('Rapoo', 31);
+  final robert = Person('Rapoo', 31);
   // mark.move();
   // mark.talk();
-print(Student('Valencia Incognita', 19, 2018));
 
+  final grandson = GrandSon('green', 'black', 'big', 'large', 'on hip');
+
+
+  print(mark);
+  print(robert);
+  print(grandson);
+  print(Student('Valencia Incognita', 19, DateTime(2018)));
 }
