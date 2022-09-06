@@ -65,11 +65,12 @@ class Student extends Person{
     return DateTime.now().year - yearOfAdmission;
   }
   Student(super.fullName, super.age, this.yearOfAdmission);
-  @override
-  String toString() {
-    return 'Applied in $yearOfAdmission, studies at ${currentCourse()}th course';
-  }
 
+@override
+  String toString() {
+    return '${super.toString()} y.o applied in $yearOfAdmission, studies on the'
+        ' ${currentCourse()}th course';
+  }
 }
 
 void main() {
