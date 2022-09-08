@@ -1,7 +1,3 @@
-import 'dart:async';
-
-import 'package:test/test.dart';
-
 void main() {
   // 1. Создайте функцию, получающие на вход int и возвращающие String 'верно' или 'неверно'
 // Если переменная a больше нуля и меньше 5-ти
@@ -24,6 +20,7 @@ void main() {
       return num / 10;
     }
   }
+  print(makeSomeChangesWithIfs(3));
 
 // 3. Часть часа
 // В переменной min лежит число от 0 до 59.
